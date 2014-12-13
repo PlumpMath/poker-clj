@@ -22,6 +22,11 @@
     {:suit suit
      :rank rank}))
 
+(defn pair?
+  [hand]
+  (let [just-ranks (map #(:rank (parse-card %)) hand)]
+    (some #(= 2 %) (vals (frequencies just-ranks)))))
+
 (def my-hand (map parse-card ["5S" "TH" "5S" "4H" "3C"]))
 (frequencies (map :rank my-hand))
 
